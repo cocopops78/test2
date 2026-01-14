@@ -8,7 +8,8 @@
   <h1>✅ Déployé !</h1>
   <p id="status">Connexion...</p>
   <script>
-    const ws = new WebSocket('wss://ws.api.prod.paradex.trade/v1/');
+    //const ws = new WebSocket('wss://ws.api.prod.paradex.trade/v1/');
+    const ws = new WebSocket('wss://dex-theta-lyart.vercel.app/');
     ws.onopen = () => {
       document.getElementById('status').textContent = '✅ Connecté à ParaDex';
       ws.send(JSON.stringify({ op: 'subscribe', channel: 'order_book', market_symbol: 'ETH-USD' }));
