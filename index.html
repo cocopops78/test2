@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ParaDex Viewer</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <h1>✅ Déployé !</h1>
+  <p id="status">Connexion...</p>
+  <script>
+    const ws = new WebSocket('wss://ws.api.prod.paradex.trade/v1/');
+    ws.onopen = () => {
+      document.getElementById('status').textContent = '✅ Connecté à ParaDex';
+      ws.send(JSON.stringify({ op: 'subscribe', channel: 'order_book', market_symbol: 'ETH-USD' }));
+    };
+    ws.onerror = () => {
+      document.getElementById('status').textContent = '❌ Erreur WebSocket';
+    };
+  </script>
+</body>
+</html>
